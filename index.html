@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#08285d">
+  <meta name="description" content="iFix, protótipo de marketplace de serviços">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="css/style.css">
+  <title>iFix | Serviços perto de você</title>
+</head>
+<body>
+  <section class="auth-shell" id="authScreen">
+    <aside class="auth-brand">
+      <img src="images/logo-ifix.png" alt="Logo iFix com casa, martelo e detalhes em azul e amarelo">
+      <div class="brand-copy">
+        <span class="kicker">SERVIÇOS COM CONFIANÇA</span>
+        <h1>Quem resolve,<br>você encontra aqui.</h1>
+        <p>Solicite manutenção, compare profissionais e acompanhe tudo em um só lugar.</p>
+        <div class="brand-points">
+          <span>✓ Preço justo</span><span>✓ Profissionais avaliados</span><span>✓ Atendimento próximo</span>
+        </div>
+      </div>
+    </aside>
+
+    <main class="auth-panel">
+      <div class="mobile-logo"><img src="images/logo-ifix.png" alt="iFix"></div>
+      <div class="auth-card">
+        <div class="auth-tabs" role="tablist">
+          <button class="tab active" data-auth-view="login" type="button">Entrar</button>
+          <button class="tab" data-auth-view="register" type="button">Criar conta</button>
+        </div>
+
+        <form id="loginForm" class="auth-form active" data-auth-form="login">
+          <span class="kicker">BEM-VINDO DE VOLTA</span>
+          <h2>Acesse sua conta</h2>
+          <p class="form-intro">Use uma conta criada neste navegador ou entre no modo demonstração.</p>
+          <label>E-mail<input type="email" id="loginEmail" placeholder="seuemail@exemplo.com" autocomplete="email" required></label>
+          <label>Senha<span class="password-wrap"><input type="password" id="loginPassword" minlength="6" placeholder="Mínimo de 6 caracteres" autocomplete="current-password" required><button class="show-password" type="button" aria-label="Mostrar senha">👁</button></span></label>
+          <div class="form-meta"><label class="check"><input type="checkbox" id="rememberMe"> Lembrar de mim</label><button class="text-btn" id="forgotBtn" type="button">Esqueci a senha</button></div>
+          <button class="primary full" type="submit">Entrar na iFix</button>
+          <button class="secondary full" id="demoBtn" type="button">Entrar no modo demonstração</button>
+          <p class="prototype-note">Protótipo: os dados ficam somente neste navegador.</p>
+        </form>
+
+        <section class="auth-form" data-auth-form="register">
+          <span class="kicker">PRIMEIRO PASSO</span>
+          <h2>Como deseja usar a iFix?</h2>
+          <p class="form-intro">Escolha o tipo de cadastro. Você poderá alterar as informações depois.</p>
+          <div class="role-grid">
+            <button class="role-card" data-role="cliente" type="button"><span class="role-icon">🏠</span><strong>Sou cliente</strong><small>Quero contratar serviços</small><i>Continuar →</i></button>
+            <button class="role-card provider" data-role="prestador" type="button"><span class="role-icon">🧰</span><strong>Sou prestador</strong><small>Quero oferecer serviços</small><i>Continuar →</i></button>
+          </div>
+          <p class="legal">Ao criar uma conta, você confirma que leu os Termos de Uso e a Política de Privacidade do protótipo.</p>
+        </section>
+
+        <form id="clientForm" class="auth-form" data-auth-form="cliente">
+          <button class="back-auth" data-back-register type="button">← Voltar</button>
+          <span class="kicker">CADASTRO DE CLIENTE</span><h2>Encontre ajuda para sua casa</h2>
+          <div class="two-cols"><label>Nome completo<input name="name" required></label><label>Telefone<input name="phone" inputmode="tel" placeholder="(11) 99999-9999" required></label></div>
+          <label>E-mail<input name="email" type="email" required></label>
+          <div class="two-cols"><label>CEP<input name="cep" inputmode="numeric" maxlength="9" placeholder="00000-000" required></label><label>Cidade<input name="city" value="São Paulo" required></label></div>
+          <label>Senha<input name="password" type="password" minlength="6" required></label>
+          <label class="check terms"><input name="terms" type="checkbox" required> Aceito os termos do protótipo</label>
+          <button class="primary full" type="submit">Criar conta de cliente</button>
+        </form>
+
+        <form id="providerForm" class="auth-form" data-auth-form="prestador">
+          <button class="back-auth" data-back-register type="button">← Voltar</button>
+          <span class="kicker">CADASTRO DE PRESTADOR</span><h2>Comece a receber chamados</h2>
+          <div class="two-cols"><label>Nome ou empresa<input name="name" required></label><label>CPF ou CNPJ<input name="document" inputmode="numeric" required></label></div>
+          <label>E-mail<input name="email" type="email" required></label>
+          <div class="two-cols"><label>Telefone<input name="phone" inputmode="tel" required></label><label>Raio de atendimento<select name="radius"><option>5 km</option><option selected>15 km</option><option>30 km</option><option>50 km</option></select></label></div>
+          <label>Especialidade principal<select name="specialty" required><option value="">Selecione</option><option>Elétrica</option><option>Hidráulica</option><option>Construção</option><option>Montagem</option><option>Jardinagem</option><option>Limpeza</option><option>Refrigeração</option><option>Serviços especiais</option></select></label>
+          <label>Senha<input name="password" type="password" minlength="6" required></label>
+          <label class="check terms"><input name="terms" type="checkbox" required> Confirmo que os dados são demonstrativos</label>
+          <button class="primary full" type="submit">Criar conta de prestador</button>
+        </form>
+      </div>
+    </main>
+  </section>
+
+  <div id="appScreen" hidden>
+    <header class="topbar">
+      <a class="app-logo" href="#inicio"><img src="images/logo-ifix.png" alt="iFix"></a>
+      <nav><a href="#inicio">Início</a><a href="#como-funciona">Como funciona</a><a href="#categorias">Categorias</a><a href="#profissionais">Profissionais</a></nav>
+      <div class="user-menu"><span id="welcomeUser"></span><button class="outline" id="logoutBtn" type="button">Sair</button></div>
+    </header>
+    <main>
+      <section class="hero" id="inicio">
+        <div class="hero-copy"><span class="kicker">MANUTENÇÃO SEM COMPLICAÇÃO</span><h1>O serviço certo,<br><em>na hora certa.</em></h1><p>Descreva o que precisa, compare profissionais próximos e escolha com segurança.</p><div class="hero-actions"><button class="primary" id="requestBtn" type="button">Solicitar um serviço</button><a class="secondary" href="#profissionais">Ver profissionais</a></div><div class="proof"><span><b>4,9</b> avaliação média</span><span><b>+120</b> profissionais</span><span><b>±20%</b> faixa controlada</span></div></div>
+        <div class="hero-visual"><div class="job-card"><span class="live-dot"></span><small>SERVIÇO EM ANDAMENTO</small><h3>Instalação de chuveiro</h3><p>João Elétrica está a caminho</p><div class="arrival"><b>18 min</b><span>previsão de chegada</span></div><div class="route"><i></i></div></div><div class="mini-card rating">⭐ <b>4,9</b><span>Excelente</span></div><div class="mini-card fair">✓ <b>Preço Justo</b></div></div>
+      </section>
+      <section class="value-strip" aria-label="Vantagens da iFix">
+  <article><span>01</span><div><strong>Peça em poucos passos</strong><small>Escolha a categoria, descreva o problema e veja uma estimativa.</small></div></article>
+  <article><span>02</span><div><strong>Compare com clareza</strong><small>Avaliação, distância, chegada e preço aparecem lado a lado.</small></div></article>
+  <article><span>03</span><div><strong>Escolha com segurança</strong><small>Perfis verificados e faixa de preço controlada pela plataforma.</small></div></article>
+</section>
+<section class="how-section" id="como-funciona">
+  <div class="how-copy"><span class="kicker">SIMPLES DO INÍCIO AO FIM</span><h2>Entenda a iFix em menos de um minuto.</h2><p>A iFix aproxima quem precisa resolver um serviço de profissionais da região. O protótipo demonstra cadastro, solicitação, comparação de prestadores e acompanhamento.</p><button class="primary" id="howRequestBtn" type="button">Começar uma solicitação</button></div>
+  <div class="steps-panel"><div class="step-item"><b>1</b><div><strong>Conte o que precisa</strong><p>Selecione a categoria, urgência e complexidade.</p></div></div><div class="step-item"><b>2</b><div><strong>Receba opções</strong><p>Veja profissionais disponíveis e valores estimados.</p></div></div><div class="step-item"><b>3</b><div><strong>Escolha e acompanhe</strong><p>Compare os perfis e acompanhe o atendimento.</p></div></div></div>
+</section>
+<section class="section" id="categorias"><div class="section-head"><div><span class="kicker">ENCONTRE RAPIDAMENTE</span><h2>Do que você precisa?</h2></div></div><div class="category-grid" id="categoryGrid"></div></section>
+      <section class="section tint" id="profissionais"><div class="section-head"><div><span class="kicker">PERTO DE VOCÊ</span><h2>Profissionais disponíveis</h2></div><select id="sortSelect"><option value="score">Recomendados</option><option value="price">Menor preço</option><option value="distance">Mais próximos</option></select></div><div class="pro-grid" id="professionalGrid"></div></section>
+    </main>
+    <footer><img src="images/logo-ifix.png" alt="iFix"><p>Protótipo demonstrativo. Não realiza contratação, validação documental ou pagamento real.</p></footer>
+  </div>
+
+  <div class="modal" id="serviceModal" hidden><div class="backdrop" data-close-modal></div><form class="modal-card" id="serviceForm"><button class="close" type="button" data-close-modal>×</button><span class="kicker">NOVA SOLICITAÇÃO</span><h2>Conte o que precisa</h2><label>Categoria<select id="serviceCategory" required></select></label><label>Descrição<textarea rows="4" required placeholder="Ex.: preciso instalar um chuveiro novo"></textarea></label><div class="two-cols"><label>Urgência<select id="urgency"><option value="0">Normal</option><option value="30">Prioritária (+ R$ 30)</option><option value="60">Emergencial (+ R$ 60)</option></select></label><label>Complexidade<select id="complexity"><option value="1">Simples</option><option value="1.25">Intermediária</option><option value="1.5">Complexa</option><option value="2">Especialista</option></select></label></div><div class="quote"><span>Estimativa do protótipo</span><strong id="quotePrice">R$ 0,00</strong><small id="quoteRange"></small></div><button class="primary full" type="submit">Buscar profissionais</button></form></div>
+  <section class="search-screen" id="searchScreen" hidden aria-live="polite">
+    <header class="search-topbar">
+      <div class="search-brand"><img src="images/logo-ifix.png" alt="iFix"><div><small>BUSCA EM TEMPO REAL</small><strong>Encontrando profissionais próximos</strong></div></div>
+      <button class="outline" id="cancelSearchBtn" type="button">Cancelar busca</button>
+    </header>
+    <main class="search-layout">
+      <section class="search-map-card">
+        <div class="search-map" id="searchMap" aria-label="Mapa ilustrativo da busca por prestadores">
+          <div class="map-grid"></div>
+          <span class="map-road road-a"></span><span class="map-road road-b"></span><span class="map-road road-c"></span>
+          <div class="client-marker" title="Sua localização"><span>⌂</span><small>Você</small></div>
+          <div class="provider-marker provider-one" data-provider-marker><span>⚡</span></div>
+          <div class="provider-marker provider-two" data-provider-marker><span>🔧</span></div>
+          <div class="provider-marker provider-three" data-provider-marker><span>🧰</span></div>
+          <div class="provider-marker provider-four" data-provider-marker><span>💧</span></div>
+          <div class="radar-ring ring-one"></div><div class="radar-ring ring-two"></div><div class="radar-ring ring-three"></div>
+        </div>
+        <div class="location-bar"><span class="location-icon">◎</span><div><small>LOCALIZAÇÃO UTILIZADA</small><strong id="locationText">Solicitando sua localização atual...</strong><p id="coordinateText">Aguardando autorização do navegador</p></div><button class="text-btn" id="retryLocationBtn" type="button">Atualizar</button></div>
+      </section>
+      <aside class="search-status-card">
+        <div class="search-orbit"><div class="orbit-logo"><img src="images/logo-ifix.png" alt="iFix"></div><i></i><i></i><i></i></div>
+        <span class="search-pill" id="searchPill">BUSCANDO</span>
+        <h2 id="searchTitle">Procurando o profissional ideal...</h2>
+        <p id="searchDescription">Estamos comparando especialidade, distância, disponibilidade, avaliação e faixa de preço.</p>
+        <div class="search-progress"><i id="searchProgressBar"></i></div>
+        <ol class="search-checklist">
+          <li class="active" data-search-step="1"><b>1</b><span>Confirmando sua região</span><i>Em andamento</i></li>
+          <li data-search-step="2"><b>2</b><span>Filtrando profissionais compatíveis</span><i>Aguardando</i></li>
+          <li data-search-step="3"><b>3</b><span>Enviando o chamado</span><i>Aguardando</i></li>
+          <li data-search-step="4"><b>4</b><span>Recebendo disponibilidades</span><i>Aguardando</i></li>
+        </ol>
+        <div class="search-summary"><span><small>SERVIÇO</small><strong id="searchServiceName">Serviço residencial</strong></span><span><small>RAIO SIMULADO</small><strong>até 15 km</strong></span></div>
+      </aside>
+    </main>
+  </section>
+
+  <section class="results-screen" id="resultsScreen" hidden>
+    <header class="results-header"><div><span class="kicker">PROFISSIONAIS ENCONTRADOS</span><h1>Escolha quem combina com o serviço</h1><p id="resultsLocation">Opções ordenadas por compatibilidade com a solicitação.</p></div><button class="outline" id="newSearchBtn" type="button">Nova solicitação</button></header>
+    <main class="results-body"><div class="result-highlight"><span>✓</span><div><strong>4 profissionais responderam</strong><p>Valores simulados dentro da faixa calculada pela iFix.</p></div></div><div class="pro-grid results-grid" id="resultsProfessionalGrid"></div></main>
+  </section>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="js/dados.js"></script><script src="js/app.js"></script>
+</body>
+</html>
